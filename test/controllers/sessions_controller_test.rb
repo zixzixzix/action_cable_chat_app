@@ -24,7 +24,7 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
     assert is_logged_in?
     assert_redirected_to messages_url
     follow_redirect!
-    assert_select "a", "Log out"
+    assert_select "a", href: logout_url
     delete logout_url
     assert_not is_logged_in?
     assert_redirected_to login_url
