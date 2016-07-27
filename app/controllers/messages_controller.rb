@@ -6,8 +6,13 @@ class MessagesController < ApplicationController
   end
 
   def create
-    current_user.messages.create(message_params)
-    render 'index'
+    message = current_user.messages.build(message_params)
+    if message.save
+      ActionCable.server.broadcast 'room_channel',
+        message: message.content,
+        user:    message.user.username
+      head :ok
+    end
   end
 
   private

@@ -6,7 +6,17 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
+    unless data.message.blank?
+      $('.messages').append '<div class="message">' +
+        '<div class="message-user">' + data.user + ":" + '</div>' +
+        data.message + '</div>' + '</div>'
 
-  speak: ->
-    @perform 'speak'
+$(document).on 'turbolinks:load', ->
+  submit_message()
+
+submit_message = () ->
+  $('textarea#message_content').on 'keydown', (event) ->
+    if event.keyCode is 13
+      $('[data-send="message"]').click()
+      event.target.click()
+      event.target.value = ""
