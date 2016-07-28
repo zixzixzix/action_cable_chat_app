@@ -10,7 +10,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('#messages').append '<div class="message">' +
         '<div class="message-user">' + data.user + ":" + '</div>' +
         data.message + '</div>' + '</div>'
-      $('#messages').scrollTop($('#messages .message').last().offset().top)
+      $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
 
 $(document).on 'turbolinks:load', ->
