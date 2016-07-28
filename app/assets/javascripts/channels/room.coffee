@@ -7,9 +7,11 @@ App.room = App.cable.subscriptions.create "RoomChannel",
 
   received: (data) ->
     unless data.message.blank?
-      $('.messages').append '<div class="message">' +
+      $('#messages').append '<div class="message">' +
         '<div class="message-user">' + data.user + ":" + '</div>' +
         data.message + '</div>' + '</div>'
+      $('#messages').scrollTop($('#messages .message').last().offset().top)
+
 
 $(document).on 'turbolinks:load', ->
   submit_message()
@@ -20,3 +22,5 @@ submit_message = () ->
       $('[data-send="message"]').click()
       event.target.click()
       event.target.value = ""
+      event.preventDefault()
+
