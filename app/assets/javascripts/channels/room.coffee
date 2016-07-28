@@ -10,11 +10,15 @@ App.room = App.cable.subscriptions.create "RoomChannel",
       $('#messages').append '<div class="message">' +
         '<div class="message-user">' + data.user + ":" + '</div>' +
         data.message + '</div>' + '</div>'
-      $('#messages').scrollTop($('#messages')[0].scrollHeight)
+      scroll_bottom()
 
 
 $(document).on 'turbolinks:load', ->
+  scroll_bottom()
   submit_message()
+
+scroll_bottom = () ->
+  $('#messages').scrollTop($('#messages')[0].scrollHeight)
 
 submit_message = () ->
   $('textarea#message_content').on 'keydown', (event) ->
