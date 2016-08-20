@@ -1,21 +1,4 @@
 <div class="message-wr">
-  <div id="messages" class="messages">
-    <% if @messages && @messages.any? %>
-      <% @messages.each do |message| %>
-      <div class="message">
-        <div class="message-user">
-          <%= message.user.username %>:
-        </div>
-        <%= message.content %>
-      </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="message-input">
-    <%= form_for(@message, remote: true) do |f| %>
-      <%= f.text_area :content %>
-      <%= f.submit "Send", data: { send: "message" } %>
-    <% end %>
-  </div>
+  <%= render 'messages' %>
+  <%= render 'message_form' %>
 </div>
