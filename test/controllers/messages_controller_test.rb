@@ -19,13 +19,21 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should handle invalid message" do
     login_as @user
-    post messages_url, params: { message: { content: "" } }
+    post messages_url, params: { message: { content: "" } },
+                       xhr: true
     assert_response :success
   end
 
   test "should create valid message" do
     login_as @user
-    post messages_url, params: { message: { content: "Lorem ipsum" } }
+    post messages_url, params: { message: { content: "Lorem ipsum" } },
+                       xhr: true
     assert_response :success
+  end
+
+  test "should have a data input" do
+    login_as @user
+    get messages_url
+    assert_select 'input[data-send=message]'
   end
 end
