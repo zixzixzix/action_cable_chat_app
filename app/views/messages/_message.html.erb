@@ -3,6 +3,6 @@
     <%= message.user.username %>:
   </div>
   <div class="message-content">
-    <%= sanitize Kramdown::Document.new(message.content).to_html %>
+    <%= markdown(message.content) %>
   </div>
 </div>
