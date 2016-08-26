@@ -2,8 +2,13 @@ class MessageBroadcastJob < ApplicationJob
   queue_as :default
 
   def perform(message)
-    ActionCable.server.broadcast 'room_channel',
+    message.mentions.each do |mention|
+      ActionCable.server.broadcast "user_channel_#{mention.id}",
+                                   mention: true
+    end
+    ActionCable.server.broadcast "room_channel",
                                  message: render_message(message)
+    head :ok
   end
 
   private

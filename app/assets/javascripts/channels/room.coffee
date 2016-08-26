@@ -6,8 +6,9 @@ App.room = App.cable.subscriptions.create "RoomChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    unless data.message.blank?
-      $('#messages').append data['message']
+    alert("You have a new mention") if data.mention
+    if (data.message && !data.message.blank?)
+      $('#messages').append data.message
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
