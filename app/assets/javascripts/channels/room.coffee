@@ -8,7 +8,7 @@ App.room = App.cable.subscriptions.create "RoomChannel",
   received: (data) ->
     alert("You have a new mention") if data.mention
     if (data.message && !data.message.blank?)
-      $('#messages').append data.message
+      $('#messages-table').append data.message
       scroll_bottom()
 
 $(document).on 'turbolinks:load', ->
