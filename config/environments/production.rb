@@ -36,9 +36,9 @@ Rails.application.configure do
 
   # Mount Action Cable outside main process or domain
   # config.action_cable.mount_path = nil
-  config.action_cable.url = 'wss://whispering-meadow-75065.herokuapp.com/cable'
+  config.action_cable.url = 'wss://peaceful-basin-31856.herokuapp.com/cable'
   config.action_cable.allowed_request_origins = [
-    'https://whispering-meadow-75065.herokuapp.com' ]
+    'https://peaceful-basin-31856.herokuapp.com' ]
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
